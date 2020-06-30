@@ -51,13 +51,20 @@ class _HomepageState extends State<Homepage> {
           // ? Container(
           //     color: Colors.white,
           // )
-          ? ListView.builder(itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(data[index]["title"]),
-                subtitle: Text("ID :${data[index]["id"]}"),
-                leading: Image.network(data[index]["url"]),
-              );
-            })
+          ?
+          // GridView.builder(
+          //     gridDelegate:
+          //         SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+
+          ListView.builder(
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(data[index]["title"]),
+                  subtitle: Text("ID :${data[index]["id"]}"),
+                  leading: Image.network(data[index]["url"]),
+                );
+              },
+            )
           : Center(
               child: CircularProgressIndicator(),
             ),
