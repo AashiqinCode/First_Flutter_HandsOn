@@ -77,8 +77,8 @@ class HomepageSb extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(snapshot.data[index]),
-                        subtitle: Text("ID :${snapshot.data[index]["id"]}"),
-                        leading: Image.network(snapshot.data[index]["url"]),
+                        // subtitle: Text("ID :${snapshot.data[index]["id"]}"),
+                        // leading: Image.network(snapshot.data[index]["url"]),
                       );
                     },
                     itemCount: snapshot.data.length);
