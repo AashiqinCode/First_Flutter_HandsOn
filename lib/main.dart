@@ -1,7 +1,13 @@
-import 'package:first_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'package:first_app/pages/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'pages/login_page.dart';
+import 'utils/constants.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Constants.prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
@@ -10,11 +16,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Homepage(),
+      // Remove debugsymbol
+      debugShowCheckedModeBanner: false,
+
+      // For persistence
+      home: Constants.prefs.getBool("LoggedIn") == true
+          ? Homepage()
+          : LoginPage(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      routes: {
+        LoginPage.routeName: (context) => LoginPage(),
+        Homepage.routeName: (context) => Homepage()
+      },
     );
   }
 }

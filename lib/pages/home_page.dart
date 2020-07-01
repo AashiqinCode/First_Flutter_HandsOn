@@ -1,9 +1,13 @@
+import 'package:first_app/pages/login_page.dart';
+import 'package:first_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import '../drawer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Homepage extends StatefulWidget {
+  static const String routeName = "/home";
+
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -44,11 +48,22 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: Colors.green[100],
       appBar: AppBar(
         title: Text("My App"),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                Constants.prefs.setBool("LoggedIn", false);
+
+                // Navigator.pop(context);
+
+                Navigator.pushReplacementNamed(context, LoginPage.routeName);
+              })
+        ],
       ),
 
       // Container is similiar to <Div>
       body: data != null
-          // ? Container(
+           // ? Container(
           //     color: Colors.white,
           // )
           ?
