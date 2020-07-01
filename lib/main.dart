@@ -1,3 +1,4 @@
+import 'package:first_app/pages/home_page_with_fb.dart';
 import 'package:flutter/material.dart';
 
 import 'package:first_app/pages/home_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 
       // For persistence
       home: Constants.prefs.getBool("LoggedIn") == true
-          ? Homepage()
+          ? HomepageFb()
           : LoginPage(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         LoginPage.routeName: (context) => LoginPage(),
-        Homepage.routeName: (context) => Homepage()
+        Homepage.routeName: (context) => Homepage(),
+        HomepageFb.routeName: (context) => HomepageFb()
       },
     );
   }
